@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record  id="view_sale_order_line_from_inhertit_ip" model="ir.actions.act_window" >
+            <field name="name">Split Sale Order</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="domain">[('order_id','=', active_id)]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <record id="view_sale_order_form_inherit_ip" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.ip</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='preview_sale_order']" position="after">
+                    <button name="%(split_sale_order.view_sale_order_line_from_inhertit_ip)d" type="action" string="Split Order" groups="split_sale_order.group_split_draft_order" class="btn-primary" attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
