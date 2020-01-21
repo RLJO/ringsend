@@ -18,7 +18,6 @@ class SplitSaleOrder(models.TransientModel):
     partner_id = fields.Many2one('res.partner', string='Partner', required=True)
     order_date = fields.Datetime('Order Date', required=True)
 
-    @api.multi
     def split_saleorder(self):
         if self.partner_id:
             order_line_id = self.env['sale.order.line'].browse(self._context['active_id'])
