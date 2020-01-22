@@ -30,7 +30,7 @@
                         groups="stock_inventory_discrepancy.group_stock_inventory_validation_always"
                         attrs="{'invisible': ['|',('state', '!=', 'pending'),('over_discrepancy_line_count', '=', 0)]}"/>
             </xpath>
-            <field name="date" position="after">
+            <field name="accounting_date" position="after">
                 <field name="over_discrepancy_line_count" attrs="{'invisible': [('state', '!=', 'pending')]}"/>
             </field>
             <xpath expr="//field[@name='line_ids']/tree/field[@name='product_qty']"
