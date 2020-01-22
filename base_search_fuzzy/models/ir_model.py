@@ -72,7 +72,6 @@ class IrModel(models.Model):
 
     _inherit = 'ir.model'
 
-    @api.model_cr
     def _register_hook(self):
         # We have to prevent wrapping the function twice to avoid recursion
         # errors
