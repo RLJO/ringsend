@@ -86,7 +86,6 @@ class TrgmIndex(models.Model):
             return True
         return False
 
-    @api.model_cr_context
     def _auto_init(self):
         res = super(TrgmIndex, self)._auto_init()
         if self._install_trgm_extension():
