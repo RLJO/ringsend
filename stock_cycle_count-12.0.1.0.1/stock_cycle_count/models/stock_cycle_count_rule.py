@@ -11,7 +11,6 @@ class StockCycleCountRule(models.Model):
     _name = 'stock.cycle.count.rule'
     _description = "Stock Cycle Counts Rules"
 
-    @api.multi
     def _compute_currency_id(self):
         for rec in self:
             rec.currency_id = self.env.user.company_id.currency_id
@@ -24,7 +23,6 @@ class StockCycleCountRule(models.Model):
             ('accuracy', _('Minimum Accuracy')),
             ('zero', _('Zero Confirmation'))]
 
-    @api.multi
     @api.constrains('rule_type', 'warehouse_ids')
     def _check_zero_rule(self):
         for rec in self:
@@ -66,7 +64,6 @@ class StockCycleCountRule(models.Model):
         else:
             self.rule_description = _('(No description provided.)')
 
-    @api.multi
     @api.constrains('periodic_qty_per_period', 'periodic_count_period')
     def _check_negative_periodic(self):
         for rec in self:
@@ -220,7 +217,6 @@ class StockCycleCountRule(models.Model):
                 cycle_counts.append(cycle_count)
         return cycle_counts
 
-    @api.multi
     def _compute_rule_accuracy(self, locs):
         self.ensure_one()
         cycle_counts = []
