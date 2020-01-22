@@ -19,7 +19,6 @@ except (ImportError, IOError) as err:
 class StockLocation(models.Model):
     _inherit = 'stock.location'
 
-    @api.multi
     def _compute_loc_accuracy(self):
         for rec in self:
             history = self.env['stock.inventory'].search([
@@ -54,7 +53,6 @@ class StockLocation(models.Model):
         digits=(3, 2),
     )
 
-    @api.multi
     def _get_zero_confirmation_domain(self):
         self.ensure_one()
         domain = [
@@ -63,7 +61,6 @@ class StockLocation(models.Model):
         ]
         return domain
 
-    @api.multi
     def check_zero_confirmation(self):
         for rec in self:
             if not rec.zero_confirmation_disabled:
@@ -78,7 +75,6 @@ class StockLocation(models.Model):
                     if not quants:
                         rec.create_zero_confirmation_cycle_count()
 
-    @api.multi
     def create_zero_confirmation_cycle_count(self):
         self.ensure_one()
         date = datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
@@ -100,7 +96,6 @@ class StockLocation(models.Model):
         })
         return True
 
-    @api.multi
     def action_accuracy_stats(self):
         self.ensure_one()
         action = self.env.ref('stock_cycle_count.act_accuracy_stats')
