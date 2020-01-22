@@ -9,7 +9,6 @@ from odoo import api, models
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    @api.multi
     def _action_done(self):
         res = super()._action_done()
         self.mapped("location_id").check_zero_confirmation()
