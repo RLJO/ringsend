@@ -27,7 +27,6 @@ class StockInventoryLine(models.Model):
         help="Maximum Discrepancy Rate Threshold",
         compute='_compute_discrepancy_threshold')
 
-    @api.multi
     @api.depends('theoretical_qty', 'product_qty')
     def _compute_discrepancy(self):
         for line in self:
@@ -39,7 +38,6 @@ class StockInventoryLine(models.Model):
             elif not line.theoretical_qty and line.product_qty:
                 line.discrepancy_percent = 100.0
 
-    @api.multi
     def _compute_discrepancy_threshold(self):
         for line in self:
             whs = line.location_id.get_warehouse()
