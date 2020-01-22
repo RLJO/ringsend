@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* enhanced_uom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-02 17:42+0000\n"
+"PO-Revision-Date: 2019-04-02 17:42+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: enhanced_uom
+#: model:ir.model,name:enhanced_uom.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: enhanced_uom
+#: model:ir.model,name:enhanced_uom.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: enhanced_uom
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_product__uom_category_ids
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_template__uom_category_ids
+msgid "Product UOMs"
+msgstr ""
+
+#. module: enhanced_uom
+#: model:ir.model,name:enhanced_uom.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr ""
+
+#. module: enhanced_uom
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_product__uom_category_name
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_template__uom_category_name
+msgid "UOM category"
+msgstr ""
+
