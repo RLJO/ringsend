@@ -47,7 +47,6 @@ class TrgmIndex(models.Model):
              'GiST for often-updated data."'
     )
 
-    @api.model_cr
     def _trgm_extension_exists(self):
         self.env.cr.execute("""
             SELECT name, installed_version
@@ -65,13 +64,11 @@ class TrgmIndex(models.Model):
 
         return 'installed'
 
-    @api.model_cr
     def _is_postgres_superuser(self):
         self.env.cr.execute("SHOW is_superuser;")
         superuser = self.env.cr.fetchone()
         return superuser is not None and superuser[0] == 'on' or False
 
-    @api.model_cr
     def _install_trgm_extension(self):
         extension = self._trgm_extension_exists()
         if extension == 'missing':
@@ -97,7 +94,6 @@ class TrgmIndex(models.Model):
                          'fuzzy search can be used.')
         return res
 
-    @api.model_cr
     def get_not_used_index(self, index_name, table_name, inc=1):
         if inc > 1:
             new_index_name = index_name + str(inc)
@@ -118,7 +114,6 @@ class TrgmIndex(models.Model):
 
         return False, new_index_name
 
-    @api.multi
     def create_index(self):
         self.ensure_one()
 
@@ -164,7 +159,6 @@ class TrgmIndex(models.Model):
         rec.index_name = rec.create_index()
         return rec
 
-    @api.multi
     def unlink(self):
         for rec in self:
             self.env.cr.execute("""
