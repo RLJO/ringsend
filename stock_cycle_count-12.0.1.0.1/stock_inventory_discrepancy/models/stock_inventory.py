@@ -31,7 +31,6 @@ class StockInventory(models.Model):
         compute='_compute_over_discrepancy_line_count',
         store=True)
 
-    @api.multi
     @api.depends('line_ids.product_qty', 'line_ids.theoretical_qty')
     def _compute_over_discrepancy_line_count(self):
         for inventory in self:
@@ -41,7 +40,6 @@ class StockInventory(models.Model):
             )
             inventory.over_discrepancy_line_count = len(lines)
 
-    @api.multi
     def action_over_discrepancies(self):
         self.write({'state': 'pending'})
 
@@ -70,6 +68,5 @@ class StockInventory(models.Model):
                     inventory._check_group_inventory_validation_always()
         return super(StockInventory, self)._action_done()
 
-    @api.multi
     def action_force_done(self):
         return super(StockInventory, self)._action_done()
