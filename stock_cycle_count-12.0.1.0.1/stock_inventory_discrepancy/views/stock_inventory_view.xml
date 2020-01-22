@@ -7,7 +7,7 @@
     <record id="view_inventory_form" model="ir.ui.view">
         <field name="name">Inventory form view - discrepancy extension </field>
         <field name="model">stock.inventory</field>
-        <field name="inherit_id" ref="studio_customization.odoo_studio_stock_in_ea85e0e4-ecba-47ef-87f6-dbd6305c7389"/>
+        <field name="inherit_id" ref="stock.view_inventory_form"/>
         <field name="arch" type="xml">
             <field name="state" position="attributes">
                 <attribute name="statusbar_visible">
