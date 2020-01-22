@@ -62,16 +62,13 @@ class StockCycleCount(models.Model):
     )
 
     @api.depends('stock_adjustment_ids')
-    @api.multi
     def _compute_inventory_adj_count(self):
         for rec in self:
             rec.inventory_adj_count = len(rec.stock_adjustment_ids)
 
-    @api.multi
     def do_cancel(self):
         self.write({'state': 'cancelled'})
 
-    @api.multi
     def _prepare_inventory_adjustment(self):
         self.ensure_one()
         return {
@@ -87,7 +84,6 @@ class StockCycleCount(models.Model):
             'stock.cycle.count') or ''
         return super(StockCycleCount, self).create(vals)
 
-    @api.multi
     def action_create_inventory_adjustment(self):
         if any([s != 'draft' for s in self.mapped('state')]):
             raise UserError(_(
@@ -99,7 +95,6 @@ class StockCycleCount(models.Model):
         self.write({'state': 'open'})
         return True
 
-    @api.multi
     def action_view_inventory(self):
         action = self.env.ref('stock.action_inventory_form')
         result = action.read()[0]
