@@ -5,7 +5,6 @@
             <field name="name">Split Sale Order</field>
             <field name="res_model">sale.order.line</field>
             <field name="domain">[('order_id','=', active_id)]</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
         
