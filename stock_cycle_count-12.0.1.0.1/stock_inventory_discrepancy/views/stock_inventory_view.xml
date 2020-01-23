@@ -34,7 +34,7 @@
                 <field name="over_discrepancy_line_count" attrs="{'invisible': [('state', '!=', 'pending')]}"/>
             </field>
             <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
-  		<field name="line_ids" decoration-danger="theoretical_qty &lt; 0 or discrepancy_percent &gt; discrepancy_threshold>
+  		<field name="line_ids">
                 	<field name="discrepancy_qty"/>
                 	<field name="discrepancy_percent"/>
                 	<field name="discrepancy_threshold"/>	
