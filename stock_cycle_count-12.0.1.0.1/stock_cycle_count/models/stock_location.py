@@ -22,7 +22,7 @@ class StockLocation(models.Model):
     def _compute_loc_accuracy(self):
         for rec in self:
             history = self.env['stock.inventory'].search([
-                ('location_id', '=', rec.id), ('state', '=', 'done')])
+                ('location_ids', '=', rec.id), ('state', '=', 'done')])
             history = history.sorted(key=lambda r: r.write_date, reverse=True)
             if history:
                 wh = rec.get_warehouse()
@@ -56,7 +56,7 @@ class StockLocation(models.Model):
     def _get_zero_confirmation_domain(self):
         self.ensure_one()
         domain = [
-            ('location_id', '=', self.id),
+            ('location_ids', '=', self.id),
             ('quantity', '>', 0.0),
         ]
         return domain
@@ -83,14 +83,14 @@ class StockLocation(models.Model):
             DEFAULT_SERVER_DATETIME_FORMAT)
         counts_planned = self.env['stock.cycle.count'].search([
             ('date_deadline', '<', date_horizon), ('state', '=', 'draft'),
-            ('location_id', '=', self.id)])
+            ('location_ids', '=', self.id)])
         if counts_planned:
             counts_planned.write({'state': 'cancelled'})
         rule = self.env['stock.cycle.count.rule'].search([
             ('rule_type', '=', 'zero'), ('warehouse_ids', '=', wh_id)])
         self.env['stock.cycle.count'].create({
             'date_deadline': date,
-            'location_id': self.id,
+            'location_ids': self.id,
             'cycle_count_rule_id': rule.id,
             'state': 'draft'
         })
@@ -102,6 +102,6 @@ class StockLocation(models.Model):
         result = action.read()[0]
         result['context'] = {"search_default_location_id": self.id}
         new_domain = result['domain'][:-1] + \
-            ", ('location_id', 'child_of', active_ids)]"
+            ", ('location_ids', 'child_of', active_ids)]"
         result['domain'] = new_domain
         return result
