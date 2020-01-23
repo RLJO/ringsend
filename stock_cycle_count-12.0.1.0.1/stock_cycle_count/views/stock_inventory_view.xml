@@ -71,7 +71,6 @@
             ('state', '=', 'done')]</field>
         <field name="name">Accuracy Stats</field>
         <field name="res_model">stock.inventory</field>
-        <field name="view_type">form</field>
         <field name="view_mode">pivot,tree,form,graph</field>
     </record>
 
