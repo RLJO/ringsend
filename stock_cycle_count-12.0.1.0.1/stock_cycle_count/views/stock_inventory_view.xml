@@ -38,7 +38,7 @@
         <field name="inherit_id" ref="stock.view_inventory_filter"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="location_id"/>
+                <field name="location_ids"/>
             </field>
         </field>
     </record>
@@ -60,7 +60,7 @@
         <field name="arch" type="xml">
             <pivot string="Inventory Accuracy">
                 <field name="date" type="col"/>
-                <field name="location_id" type="row"/>
+                <field name="location_ids" type="row"/>
                 <field name="inventory_accuracy" type="measure"/>
             </pivot>
         </field>
