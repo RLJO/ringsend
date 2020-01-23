@@ -40,9 +40,9 @@ class StockInventoryLine(models.Model):
 
     def _compute_discrepancy_threshold(self):
         for line in self:
-            whs = line.location_ids.get_warehouse()
-            if line.location_ids.discrepancy_threshold > 0.0:
-                line.discrepancy_threshold = line.location_ids.\
+            whs = line.location_id.get_warehouse()
+            if line.location_id.discrepancy_threshold > 0.0:
+                line.discrepancy_threshold = line.location_id.\
                     discrepancy_threshold
             elif whs.discrepancy_threshold > 0.0:
                 line.discrepancy_threshold = whs.discrepancy_threshold
