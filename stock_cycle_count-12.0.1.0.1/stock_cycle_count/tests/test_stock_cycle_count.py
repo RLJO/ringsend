@@ -76,7 +76,7 @@ class TestStockCycleCount(common.TransactionCase):
         self.cycle_count_1 = self.cycle_count_model.sudo(self.manager).create({
             'name': 'Test cycle count',
             'cycle_count_rule_id': self.rule_periodic.id,
-            'location_id': self.count_loc.id,
+            'location_ids': self.count_loc.id,
         })
 
         # Create a product:
@@ -142,7 +142,7 @@ class TestStockCycleCount(common.TransactionCase):
             locs += wh._search_cycle_count_locations(rule)
         locs = locs.exists()  # remove duplicated locations.
         counts = self.cycle_count_model.search([
-            ('location_id', 'in', locs.ids)])
+            ('location_ids', 'in', locs.ids)])
         self.assertFalse(
             counts, 'Existing cycle counts before execute planner.')
         date_pre_existing_cc = datetime.today() + timedelta(days=30)
@@ -150,7 +150,7 @@ class TestStockCycleCount(common.TransactionCase):
         pre_existing_count = self.cycle_count_model.create({
             'name': 'To be cancelled when running cron job.',
             'cycle_count_rule_id': self.rule_periodic.id,
-            'location_id': loc.id,
+            'location_ids': loc.id,
             'date_deadline': date_pre_existing_cc
         })
         self.assertEqual(pre_existing_count.state, 'draft',
@@ -158,12 +158,12 @@ class TestStockCycleCount(common.TransactionCase):
         date = datetime.today() - timedelta(days=1)
         self.inventory_model.create({
             'name': 'Pre-existing inventory',
-            'location_id': loc.id,
+            'location_ids': loc.id,
             'date': date
         })
         self.quant_model.create({
             'product_id': self.product1.id,
-            'location_id': self.count_loc.id,
+            'location_ids': self.count_loc.id,
             'quantity': 1.0,
         })
         move1 = self.stock_move_model.create({
@@ -171,7 +171,7 @@ class TestStockCycleCount(common.TransactionCase):
             'product_id': self.product1.id,
             'product_uom_qty': 1.0,
             'product_uom': self.product1.uom_id.id,
-            'location_id': self.count_loc.id,
+            'location_ids': self.count_loc.id,
             'location_dest_id': loc.id
         })
         move1._action_confirm()
@@ -184,11 +184,11 @@ class TestStockCycleCount(common.TransactionCase):
                             'Date of pre-existing cycle counts has not been '
                             'updated.')
         counts = self.cycle_count_model.search([
-            ('location_id', 'in', locs.ids)])
+            ('location_ids', 'in', locs.ids)])
         self.assertTrue(counts, 'Cycle counts not planned')
         # Zero-confirmations:
         count = self.cycle_count_model.search([
-            ('location_id', '=', loc.id),
+            ('location_ids', '=', loc.id),
             ('cycle_count_rule_id', '=', self.zero_rule.id)])
         self.assertFalse(
             count, 'Unexpected zero confirmation.')
@@ -197,7 +197,7 @@ class TestStockCycleCount(common.TransactionCase):
             'product_id': self.product1.id,
             'product_uom_qty': 1.0,
             'product_uom': self.product1.uom_id.id,
-            'location_id': loc.id,
+            'location_ids': loc.id,
             'location_dest_id': self.count_loc.id
         })
         move2._action_confirm()
@@ -205,7 +205,7 @@ class TestStockCycleCount(common.TransactionCase):
         move2.move_line_ids[0].qty_done = 1.0
         move2._action_done()
         count = self.cycle_count_model.search([
-            ('location_id', '=', loc.id),
+            ('location_ids', '=', loc.id),
             ('cycle_count_rule_id', '=', self.zero_rule.id)])
         self.assertTrue(
             count, 'Zero confirmation not being created.')
