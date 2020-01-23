@@ -40,9 +40,9 @@
                 	<field name="discrepancy_threshold"/>	
 		</field>
   	    </xpath>
-            <xpath expr="//form[1]/sheet[1]/group[1]" position="attributes">
+            <!--<xpath expr="//form[1]/sheet[1]/group[1]" position="attributes">
                 <attribute name="decoration-danger">theoretical_qty &lt; 0 or discrepancy_percent &gt; discrepancy_threshold</attribute>
-            </xpath>
+            </xpath>-->
         </field>
     </record>
 
