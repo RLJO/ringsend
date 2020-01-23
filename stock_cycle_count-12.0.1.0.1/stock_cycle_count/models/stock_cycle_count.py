@@ -74,7 +74,7 @@ class StockCycleCount(models.Model):
         return {
             'name': 'INV/{}'.format(self.name),
             'cycle_count_id': self.id,
-            'location_id': self.location_id.id,
+            'location_ids': self.location_ids.id,
             'exclude_sublocation': True
         }
 
