@@ -51,7 +51,7 @@ class TestStockCycleCount(common.TransactionCase):
                 self.manager, 'rule_2', [100])
         self.rule_accuracy = \
             self._create_stock_cycle_count_rule_accuracy(
-                self.manager, 'rule_3', [5], self.big_wh.view_location_id.ids)
+                self.manager, 'rule_3', [5], self.big_wh.view_location_ids.ids)
         self.zero_rule = self._create_stock_cycle_count_rule_zero(
             self.manager, 'rule_4')
 
