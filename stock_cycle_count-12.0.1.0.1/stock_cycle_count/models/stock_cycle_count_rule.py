@@ -173,8 +173,8 @@ class StockCycleCountRule(models.Model):
     @api.model
     def _get_turnover_moves(self, location, date):
         moves = self.env['stock.move'].search([
-            '|', ('location_id', '=', location.id),
-            ('location_dest_id', '=', location.id),
+            '|', ('location_id', '=', location.ids),
+            ('location_dest_id', '=', location.ids),
             ('date', '>', date),
             ('state', '=', 'done')])
         return moves
@@ -190,7 +190,7 @@ class StockCycleCountRule(models.Model):
         cycle_counts = []
         for loc in locs:
             last_inventories = self.env['stock.inventory'].search([
-                ('location_id', '=', loc.id),
+                ('location_ids', '=', loc.id),
                 ('state', 'in', ['confirm', 'done', 'draft'])]).mapped('date')
             if last_inventories:
                 latest_inventory = sorted(last_inventories, reverse=True)[0]
