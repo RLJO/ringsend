@@ -66,14 +66,14 @@ class TestInventoryDiscrepancy(TransactionCase):
                     'product_uom_id': self.env.ref(
                         "uom.product_uom_unit").id,
                     'product_qty': 2.0,
-                    'location_id': self.test_loc.id,
+                    'location_ids': self.test_loc.id,
                 }),
                 (0, 0, {
                     'product_id': self.product2.id,
                     'product_uom_id': self.env.ref(
                         "uom.product_uom_unit").id,
                     'product_qty': 4.0,
-                    'location_id': self.test_loc.id,
+                    'location_ids': self.test_loc.id,
                 }),
             ],
         })
@@ -92,14 +92,14 @@ class TestInventoryDiscrepancy(TransactionCase):
                     'product_uom_id': self.env.ref(
                         "uom.product_uom_unit").id,
                     'product_qty': 3.0,
-                    'location_id': self.test_loc.id,
+                    'location_ids': self.test_loc.id,
                 }),
                 (0, 0, {
                     'product_id': self.product2.id,
                     'product_uom_id': self.env.ref(
                         "uom.product_uom_unit").id,
                     'product_qty': 3.0,
-                    'location_id': self.test_loc.id,
+                    'location_ids': self.test_loc.id,
                 })
             ],
         })
@@ -112,7 +112,7 @@ class TestInventoryDiscrepancy(TransactionCase):
         """Tests the new workflow"""
         inventory = self.obj_inventory.create({
             'name': 'Test Forcing Validation Method',
-            'location_id': self.test_loc.id,
+            'location_ids': self.test_loc.id,
             'filter': 'none',
             'line_ids': [
                 (0, 0, {
@@ -120,7 +120,7 @@ class TestInventoryDiscrepancy(TransactionCase):
                     'product_uom_id': self.env.ref(
                         "uom.product_uom_unit").id,
                     'product_qty': 3.0,
-                    'location_id': self.test_loc.id,
+                    'location_ids': self.test_loc.id,
                 }),
             ],
         })
@@ -143,7 +143,7 @@ class TestInventoryDiscrepancy(TransactionCase):
         """Tests the behaviour if the threshold is set on the WH."""
         inventory = self.obj_inventory.create({
             'name': 'Test Threshold Defined in WH',
-            'location_id': self.test_wh.view_location_id.id,
+            'location_ids': self.test_wh.view_location_id.id,
             'filter': 'none',
             'line_ids': [
                 (0, 0, {
@@ -151,7 +151,7 @@ class TestInventoryDiscrepancy(TransactionCase):
                     'product_uom_id': self.env.ref(
                         "uom.product_uom_unit").id,
                     'product_qty': 3.0,
-                    'location_id': self.test_wh.lot_stock_id.id,
+                    'location_ids': self.test_wh.lot_stock_id.id,
                 }),
             ],
         })
@@ -166,7 +166,7 @@ class TestInventoryDiscrepancy(TransactionCase):
             'product_id': self.product1.id,
             'product_tmpl_id': self.product1.product_tmpl_id.id,
             'new_quantity': 10.0,
-            'location_id': self.test_loc.id,
+            'location_ids': self.test_loc.id,
         })
         with self.assertRaises(UserError):
             upd_qty.change_product_qty()
