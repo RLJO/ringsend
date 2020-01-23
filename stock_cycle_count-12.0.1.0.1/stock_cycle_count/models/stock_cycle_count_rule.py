@@ -123,7 +123,7 @@ class StockCycleCountRule(models.Model):
     location_ids = fields.Many2many(
         comodel_name='stock.location',
         relation='location_cycle_count_rule_rel', column1='rule_id',
-        column2='location_id', string='Zones where applied',
+        column2='location_ids', string='Zones where applied',
     )
 
     def compute_rule(self, locs):
@@ -149,7 +149,7 @@ class StockCycleCountRule(models.Model):
         cycle_counts = []
         for loc in locs:
             latest_inventory_date = self.env['stock.inventory'].search([
-                ('location_id', '=', loc.id),
+                ('location_ids', '=', loc.id),
                 ('state', 'in', ['confirm', 'done', 'draft'])],
                 order="date desc", limit=1).date
             if latest_inventory_date:
@@ -173,7 +173,7 @@ class StockCycleCountRule(models.Model):
     @api.model
     def _get_turnover_moves(self, location, date):
         moves = self.env['stock.move'].search([
-            '|', ('location_id', '=', location.ids),
+            '|', ('location_ids', '=', location.ids),
             ('location_dest_id', '=', location.ids),
             ('date', '>', date),
             ('state', '=', 'done')])
