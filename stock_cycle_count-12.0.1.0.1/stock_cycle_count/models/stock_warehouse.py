@@ -48,7 +48,7 @@ class StockWarehouse(models.Model):
         if rule.apply_in == 'warehouse':
             locations = self.env['stock.location'].search(
                 self._get_cycle_count_locations_search_domain(
-                    self.view_location_id))
+                    self.view_location_ids))
         elif rule.apply_in == 'location':
             for loc in rule.location_ids:
                 locations += self.env['stock.location'].search(
@@ -92,7 +92,7 @@ class StockWarehouse(models.Model):
                     cycle_count_proposed = list(filter(
                         lambda x: x['date'] == earliest_date,
                         proposed_for_loc))[0]
-                    domain = [('location_id', '=', loc.id),
+                    domain = [('location_ids', '=', loc.id),
                               ('state', 'in', ['draft'])]
                     existing_cycle_counts = self.env[
                         'stock.cycle.count'].search(domain)
