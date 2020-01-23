@@ -25,6 +25,6 @@ class Inventory(models.Model):
             return vals
         new_vals = []
         for val in vals:
-            if val['location_id'] == self.location_id.id:
+            if val['location_ids'] == self.location_ids.id:
                 new_vals.append(val)
         return new_vals
