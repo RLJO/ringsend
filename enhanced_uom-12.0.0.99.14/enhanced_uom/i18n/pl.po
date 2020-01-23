@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* enhanced_uom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-02 19:44+0200\n"
+"PO-Revision-Date: 2019-04-02 19:45+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: \n"
+"Language: pl\n"
+
+#. module: enhanced_uom
+#: model:ir.model,name:enhanced_uom.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Pozycja BOM"
+
+#. module: enhanced_uom
+#: model:ir.model,name:enhanced_uom.model_product_template
+msgid "Product Template"
+msgstr "Szablon produktu"
+
+#. module: enhanced_uom
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_product__uom_category_ids
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_template__uom_category_ids
+msgid "Product UOMs"
+msgstr "Jednostki produktu"
+
+#. module: enhanced_uom
+#: model:ir.model,name:enhanced_uom.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "Jednostka produktu"
+
+#. module: enhanced_uom
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_product__uom_category_name
+#: model:ir.model.fields,field_description:enhanced_uom.field_product_template__uom_category_name
+msgid "UOM category"
+msgstr "Kategoria jednostek miary"
