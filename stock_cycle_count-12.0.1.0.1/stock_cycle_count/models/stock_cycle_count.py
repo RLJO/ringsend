@@ -18,7 +18,7 @@ class StockCycleCount(models.Model):
         return company_id
 
     name = fields.Char(string='Name', readonly=True)
-    location_id = fields.Many2one(
+    location_ids = fields.Many2one(
         comodel_name='stock.location', string='Location',
         required=True,
         readonly=True, states={'draft': [('readonly', False)]},
