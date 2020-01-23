@@ -84,7 +84,7 @@ class TestInventoryDiscrepancy(TransactionCase):
         """
         inventory = self.obj_inventory.create({
             'name': 'Test Discrepancy Computation',
-            'location_id': self.test_loc.id,
+            'location_ids': self.test_loc.id,
             'filter': 'none',
             'line_ids': [
                 (0, 0, {
