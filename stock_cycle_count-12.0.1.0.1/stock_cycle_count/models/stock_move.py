@@ -11,5 +11,5 @@ class StockMove(models.Model):
 
     def _action_done(self):
         res = super()._action_done()
-        self.mapped("location_id").check_zero_confirmation()
+        self.mapped("location_ids").check_zero_confirmation()
         return res
