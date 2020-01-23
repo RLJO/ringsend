@@ -65,7 +65,7 @@ class StockWarehouse(models.Model):
     def _prepare_cycle_count(self, cycle_count_proposed):
         return {
             'date_deadline': cycle_count_proposed['date'],
-            'location_id': cycle_count_proposed['location'].id,
+            'location_ids': cycle_count_proposed['location'].id,
             'cycle_count_rule_id': cycle_count_proposed[
                 'rule_type'].id,
             'state': 'draft'
