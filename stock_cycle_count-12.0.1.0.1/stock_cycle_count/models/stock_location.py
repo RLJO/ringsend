@@ -100,8 +100,8 @@ class StockLocation(models.Model):
         self.ensure_one()
         action = self.env.ref('stock_cycle_count.act_accuracy_stats')
         result = action.read()[0]
-        result['context'] = {"search_default_location_ids": self.id}
+        result['context'] = {"search_default_location_id": self.id}
         new_domain = result['domain'][:-1] + \
-            ", ('location_ids', 'child_of', active_ids)]"
+            ", ('location_id', 'child_of', active_ids)]"
         result['domain'] = new_domain
         return result
